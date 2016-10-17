@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to your To Do List app</p>
+
+
+    <table width=90% name="CRUD">
+
+    <tr>
+      <td valign=top>
+        <br><h3>Update Item</h3>
+        <% console.log(todos);
+
+          todos.forEach(function (todo)
+          {
+            console.log(todo.itemname + " " + todo.username+" ");
+
+            if(todo._id==current)
+            {
+            %>
+
+            <form action="/update/<%=todo._id%>" method="post" accept-charset="utf8" name="create">
+              <input type="text" name="username" value="<%=todo.user_id%>" />
+              <input type="text" name="itemname" value="<%=todo.itemname%>"  /><br>
+              <input type="date" name="schedule" value="<%=todo.schedule%>" />
+              <input type="submit" name="update" value="Update"/>
+            </form>
+            <%}
+          });
+          %>
+        </td>
+        <td valign=top>
+
+        <br><h3>Items List</h3>
+
+        <br><br>
+        Here is the list of items
+        <br><br>
+        <ol>
+        <% console.log(todos);
+
+          todos.forEach(function (todo)
+          {
+            console.log(todo.itemname + " " + todo.username+" ");
+            %>
+
+              <li><p> <a href="/edit/<%=todo._id%>" title="Update">
+                  <%= todo.itemname %> for <%=todo.user_id%> </a> in Category <%= todo.category %>
+              <a href="/delete/<%=todo._id%>" title="delete">Delete</a>
+                </p>
+            </li>
+            <%});
+
+        %>
+      </ol>
+    </form>
+  </td>
+</tr>
+</table>
+  </body>
+</html>
